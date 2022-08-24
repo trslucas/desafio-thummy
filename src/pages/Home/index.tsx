@@ -1,7 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { ProdutosCadastrados } from './components/ProdutosCadastrados'
-// import { SemProdutosCadastrados } from './components/SemProdutosCadastrados'
-
+import { RegistredProducts } from './components/RegistredProducts'
 import { CriarProdutoButton, HomeContainer } from './styles'
 
 export function Home() {
@@ -12,8 +10,8 @@ export function Home() {
           <NavLink to="/cadastrarProduto">Cadastrar Produto</NavLink>
         </nav>
       </CriarProdutoButton>
-      <ProdutosCadastrados />
-      {/* <SemProdutosCadastrados /> */}
+      <RegistredProducts />
+      {/* <NoRegistredProducts /> */}
     </HomeContainer>
   )
 }

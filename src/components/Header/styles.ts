@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
 `
 
-export const HeaderNavBar = styled.div`
+export const NavBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -16,6 +16,7 @@ export const HeaderNavBar = styled.div`
 
   img {
     width: 6rem;
+    cursor: pointer;
   }
 
   nav {
