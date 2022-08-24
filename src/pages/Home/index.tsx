@@ -1,10 +1,7 @@
 import { NavLink } from 'react-router-dom'
-import {
-  CriarProdutoButton,
-  HomeContainer,
-  SemProdutosCadastradosContainer,
-} from './styles'
-import semProdutosImage from '../../assets/empty.svg'
+import { SemProdutosCadastrados } from './components/SemProdutosCadastrados'
+
+import { CriarProdutoButton, HomeContainer } from './styles'
 
 export function Home() {
   return (
@@ -14,10 +11,7 @@ export function Home() {
           <NavLink to="/cadastrarProduto">Cadastrar Produto</NavLink>
         </nav>
       </CriarProdutoButton>
-      <SemProdutosCadastradosContainer>
-        <h1>Você ainda não tem nenhum produto cadastrado :(</h1>
-        <img src={semProdutosImage} alt="" />
-      </SemProdutosCadastradosContainer>
+      <SemProdutosCadastrados />
     </HomeContainer>
   )
 }
