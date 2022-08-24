@@ -33,11 +33,11 @@ export const HeaderNavBar = styled.div`
     transition: 0.4s;
 
     &:active {
-      border-bottom: 2px solid ${(props) => props.theme['light-green']};
+      border-bottom: 3px solid ${(props) => props.theme['light-green']};
     }
 
     &:hover {
-      border-bottom: 2px solid ${(props) => props.theme['light-green']};
+      border-bottom: 3px solid ${(props) => props.theme['light-green']};
     }
   }
 `
