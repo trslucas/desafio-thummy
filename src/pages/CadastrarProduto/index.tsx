@@ -1,3 +1,13 @@
+import { NovoProdutoForm } from './components/NovoProdutoForm'
+import { CadastrarProdutosContainer, NovoProdutoButton } from './styles'
+
 export function CadastrarProduto() {
-  return <h1>Cadastrar Produto</h1>
+  return (
+    <CadastrarProdutosContainer>
+      <form action="">
+        <NovoProdutoForm />
+        <NovoProdutoButton>Novo Produto</NovoProdutoButton>
+      </form>
+    </CadastrarProdutosContainer>
+  )
 }
