@@ -2,6 +2,12 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const HeaderNavBar = styled.div`
+  display: flex;
   align-items: center;
   justify-content: space-around;
   background-color: ${(props) => props.theme['blue-green']};

@@ -8,15 +8,14 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 }
 
-/* :focus {
+:focus {
     outline: 0;
-    box-shadow: 0 0 0 2px ${(props) => props.theme['green-500']};
-} */
+    box-shadow: 0 0 0 2px ${(props) => props.theme['light-green']};
+}
 body{
     background-color: ${(props) => props.theme.white} ;
     color: ${(props) => props.theme.white};
     -webkit-font-smoothing: antialiased;
-    width: 100%;
 
 }
 
