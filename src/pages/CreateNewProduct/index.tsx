@@ -1,22 +1,23 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+
 import { CreateProductsContainer, NewProductButton } from './styles'
 import { NewProductForm } from './components/NewProductForm'
 
 const newProductFormValidationSchema = zod.object({
   nomeProduto: zod.string().min(1, 'Informe o nome do produto'),
-  codigoProduto: zod.number().min(1).max(500),
+  codigoProduto: zod.number().min(1).max(100),
   descricaoProduto: zod.string().min(1, 'Informe a descrição do produto'),
   quantidadeProduto: zod.number().min(1).max(100),
-  quantidadeVendida: zod.number().min(1).max(500),
-  preco: zod.number().min(1).max(500),
+  quantidadeVendida: zod.number().min(1).max(100),
+  preco: zod.number().min(1).max(100),
 })
 
-type newProductFormData = zod.infer<typeof newProductFormValidationSchema>
+type NewProductFormData = zod.infer<typeof newProductFormValidationSchema>
 
 export function CreateNewProduct() {
-  const newProductForm = useForm<newProductFormData>({
+  const newProductForm = useForm<NewProductFormData>({
     resolver: zodResolver(newProductFormValidationSchema),
     defaultValues: {
       nomeProduto: '',
@@ -30,8 +31,8 @@ export function CreateNewProduct() {
 
   const { handleSubmit, reset } = newProductForm
 
-  function handleCreateNewProduct(data: newProductFormData) {
-    // createANewProduct(data)
+  function handleCreateNewProduct(data: NewProductFormData) {
+    console.log(data)
     reset()
   }
   return (
@@ -41,7 +42,7 @@ export function CreateNewProduct() {
         <FormProvider {...newProductForm}>
           <NewProductForm />
         </FormProvider>
-        <NewProductButton>Novo Produto</NewProductButton>
+        <NewProductButton type="submit">Novo Produto</NewProductButton>
       </form>
     </CreateProductsContainer>
   )

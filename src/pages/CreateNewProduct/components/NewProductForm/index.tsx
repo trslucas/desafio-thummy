@@ -19,8 +19,8 @@ export function NewProductForm() {
         type="number"
         placeholder="Informe o código do produto"
         min={0}
-        max={500}
-        {...register('codigoProduto')}
+        max={100}
+        {...register('codigoProduto', { valueAsNumber: true })}
       />
 
       <label htmlFor="descricaoProduto">Descrição do produto</label>
@@ -37,7 +37,7 @@ export function NewProductForm() {
         placeholder="Quantidade Inserida"
         min={0}
         max={100}
-        {...register('quantidadeProduto')}
+        {...register('quantidadeProduto', { valueAsNumber: true })}
       />
 
       <label htmlFor="quantidadeVendida">Quantidade Vendida</label>
@@ -46,8 +46,8 @@ export function NewProductForm() {
         type="number"
         placeholder="Quantidade Vendida"
         min={0}
-        max={500}
-        {...register('quantidadeVendida')}
+        max={100}
+        {...register('quantidadeVendida', { valueAsNumber: true })}
       />
 
       <label htmlFor="preco">Preço</label>
@@ -56,8 +56,8 @@ export function NewProductForm() {
         type="number"
         placeholder="Preço"
         min={0}
-        max={500}
-        {...register('preco')}
+        max={100}
+        {...register('preco', { valueAsNumber: true })}
       />
     </FormContainer>
   )
