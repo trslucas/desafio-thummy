@@ -1,14 +1,14 @@
-import { ProdutoAlteradoForm } from './components/ProdutoAlteradoForm'
-import { AlterarProdutosContainer, ProdutoAlteradoButton } from './styles'
+import { ChangeProductForm } from './components/ProdutoAlteradoForm'
+import { ChangeProductButton, ChangeProductContainer } from './styles'
 
 export function ChangeProduct() {
   return (
-    <AlterarProdutosContainer>
+    <ChangeProductContainer>
       <h1>Alterar Produtos</h1>
       <form action="">
-        <ProdutoAlteradoForm />
-        <ProdutoAlteradoButton>Alterar Informações</ProdutoAlteradoButton>
+        <ChangeProductForm />
+        <ChangeProductButton>Alterar Informações</ChangeProductButton>
       </form>
-    </AlterarProdutosContainer>
+    </ChangeProductContainer>
   )
 }

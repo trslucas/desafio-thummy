@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const AlterarProdutosContainer = styled.main`
+export const ChangeProductContainer = styled.main`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -19,7 +19,7 @@ export const AlterarProdutosContainer = styled.main`
     align-items: center;
   }
 `
-export const ProdutoAlteradoButton = styled.button`
+export const ChangeProductButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;

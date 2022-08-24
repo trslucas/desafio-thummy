@@ -1,6 +1,6 @@
 import { FormContainer, ProductInput } from './styles'
 
-export function ProdutoAlteradoForm() {
+export function ChangeProductForm() {
   return (
     <FormContainer>
       <label htmlFor="nomeProduto">Nome do Produto</label>
