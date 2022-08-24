@@ -1,7 +1,12 @@
 import {
+  AlterarButton,
+  DeletarButton,
   ProdutosCadastradosContainer,
   ProdutosCadastradosTabela,
 } from './styles'
+
+import { Pencil, Trash } from 'phosphor-react'
+import { NavLink } from 'react-router-dom'
 
 export function ProdutosCadastrados() {
   return (
@@ -17,6 +22,7 @@ export function ProdutosCadastrados() {
               <th>Quantidade em estoque</th>
               <th>Preço</th>
               <th>Quantidade Vendida</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +33,18 @@ export function ProdutosCadastrados() {
               <td>100</td>
               <td>R$5,00</td>
               <td>5</td>
+              <td>
+                <AlterarButton>
+                  <nav>
+                    <NavLink to="/alterarProduto">
+                      <Pencil size={16} />
+                    </NavLink>
+                  </nav>
+                </AlterarButton>
+                <DeletarButton>
+                  <Trash size={16} />
+                </DeletarButton>
+              </td>
             </tr>
           </tbody>
         </table>

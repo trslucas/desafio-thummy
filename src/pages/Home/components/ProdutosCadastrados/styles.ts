@@ -9,7 +9,7 @@ export const ProdutosCadastradosContainer = styled.main`
 
   h1 {
     font-size: 1.5rem;
-    color: ${(props) => props.theme['gray-100']};
+    color: ${(props) => props.theme['dark-blue']};
   }
 `
 
@@ -59,5 +59,33 @@ export const ProdutosCadastradosTabela = styled.div`
         padding-left: 1.5rem;
       }
     }
+  }
+`
+export const BaseButton = styled.button`
+  transition: 0.4s;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  nav {
+    a {
+      color: ${(props) => props.theme['gray-900']};
+    }
+  }
+`
+export const AlterarButton = styled(BaseButton)`
+  background-color: transparent;
+  nav {
+    a {
+      &:not(:disabled):hover {
+        color: ${(props) => props.theme['light-dark-blue']};
+      }
+    }
+  }
+`
+export const DeletarButton = styled(BaseButton)`
+  background-color: transparent;
+  &:not(:disabled):hover {
+    color: ${(props) => props.theme['red-500']};
   }
 `

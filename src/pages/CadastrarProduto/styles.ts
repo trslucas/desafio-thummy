@@ -9,6 +9,10 @@ export const CadastrarProdutosContainer = styled.main`
   gap: 1rem;
   align-items: center;
 
+  h1 {
+    color: ${(props) => props.theme['dark-blue']};
+  }
+
   form {
     display: flex;
     flex-direction: column;
