@@ -12,7 +12,6 @@ export const HeaderNavBar = styled.div`
   justify-content: space-around;
   background-color: ${(props) => props.theme['blue-green']};
   height: 4.5rem;
-  position: fixed;
   width: 100%;
 
   img {
