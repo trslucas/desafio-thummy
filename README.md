@@ -5,10 +5,10 @@
 
 Realizado até agora: 
 - Tela para quando não tem produtos cadastrados
-- Tela para mostrar os produtos cadastrados (Não está totalmente funcional) 
-- Tela para cadastro de um novo Produto 
-- Quando habilitada a lista de produtos cadastrados, aparece um botão para editar ou remover o item.
-- A tela para edição do Produto já está habilitada. 
+- Tela para mostrar os produtos cadastrados. 
+- Tela para cadastro de um novo Produto.
+- Quando habilitada a lista de produtos cadastrados, aparece um botão para editar ou remover o item. (funcionalidades ainda não aplicadas)
+- A tela para edição do Produto já está habilitada. (funcionalidade de edição ainda não aplicada)
 - Ainda não está responsivo. 
 
 
