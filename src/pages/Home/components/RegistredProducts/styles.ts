@@ -47,7 +47,8 @@ export const RegistredProductsTable = styled.div`
       border-top: 2px solid ${(props) => props.theme['gray-100']};
       padding: 1rem;
       color: ${(props) => props.theme['gray-900']};
-      line-height: 1.6;
+      text-align: left;
+      line-height: 1;
       font-size: 0.875rem;
 
       &:first-child {

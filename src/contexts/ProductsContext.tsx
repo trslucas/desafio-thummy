@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { addNewProductAction } from '../reducers/actions'
 
 import { Product, productsReducer } from '../reducers/reducer'
@@ -30,6 +30,7 @@ export function ProductsContextProvider({
     products: [],
   })
   const { products } = productsState
+
   function createANewProduct(data: CreateProductsData) {
     const id = crypto.randomUUID()
     const newProduct: Product = {
