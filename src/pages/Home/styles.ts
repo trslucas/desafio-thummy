@@ -15,7 +15,6 @@ export const CriarProdutoButton = styled.button`
   width: 15rem;
   height: 3.5rem;
   border: none;
-  margin-top: 5rem;
   border-radius: 8px;
   background-color: ${(props) => props.theme['dark-blue']};
   cursor: pointer;

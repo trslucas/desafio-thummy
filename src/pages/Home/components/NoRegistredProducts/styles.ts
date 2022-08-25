@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const NoRegistredProductsContainer = styled.div`
-  min-width: 25rem;
   display: flex;
   align-items: center;
   justify-content: center;

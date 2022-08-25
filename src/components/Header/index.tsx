@@ -14,7 +14,6 @@ export function Header() {
             <img src={logoThummy} alt="" />
           </NavLink>
         </nav>
-        {/* <button onClick={navigate('/')}></button> */}
         <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="">Produtos mais caros</NavLink>
