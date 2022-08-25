@@ -7,8 +7,11 @@ import {
 
 import { Pencil, Trash } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { ProductsContext } from '../../../../contexts/ProductsContext'
 
 export function RegistredProducts() {
+  const { products } = useContext(ProductsContext)
   return (
     <RegistredProductsContainer>
       <h1>Produtos Cadastrados</h1>
@@ -27,11 +30,11 @@ export function RegistredProducts() {
           </thead>
           <tbody>
             <tr>
-              <td>Alcool</td>
+              <td>Álcool</td>
               <td>125</td>
-              <td>Utilitário</td>
-              <td>100</td>
-              <td>R$5,00</td>
+              <td>Higienizador</td>
+              <td>50</td>
+              <td>R$ 8,00</td>
               <td>5</td>
               <td>
                 <ChangeProductButton>
@@ -46,6 +49,30 @@ export function RegistredProducts() {
                 </DeleteProductButton>
               </td>
             </tr>
+            {/* {products.map((product) => {
+              return (
+                <tr key={product.id}>
+                  <td>{product.nomeProduto}</td>
+                  <td>{product.codigoProduto}</td>
+                  <td>{product.descricaoProduto}</td>
+                  <td>{product.quantidadeProduto}</td>
+                  <td>R${product.preco}</td>
+                  <td>{product.quantidadeVendida}</td>
+                  <td>
+                    <ChangeProductButton>
+                      <nav>
+                        <NavLink to="/alterarProduto">
+                          <Pencil size={16} />
+                        </NavLink>
+                      </nav>
+                    </ChangeProductButton>
+                    <DeleteProductButton>
+                      <Trash size={16} />
+                    </DeleteProductButton>
+                  </td>
+                </tr>
+              )
+            })} */}
           </tbody>
         </table>
       </RegistredProductsTable>
