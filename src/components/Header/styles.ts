@@ -16,14 +16,17 @@ export const NavBar = styled.div`
 
   img {
     width: 6rem;
-    cursor: pointer;
   }
-
+  nav:nth-child(1) {
+    a:nth-child(1):hover {
+      border-top: transparent;
+      border-bottom: transparent;
+    }
+  }
   nav {
     display: flex;
     gap: 3rem;
   }
-
   a {
     text-decoration: none;
     color: ${(props) => props.theme.white};
@@ -41,4 +44,10 @@ export const NavBar = styled.div`
       border-bottom: 3px solid ${(props) => props.theme['light-green']};
     }
   }
+`
+
+export const LogoContainer = styled.button`
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
 `
