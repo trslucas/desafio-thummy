@@ -4,6 +4,8 @@ import * as zod from 'zod'
 
 import { CreateProductsContainer, NewProductButton } from './styles'
 import { NewProductForm } from './components/NewProductForm'
+import { ProductsContext } from '../../contexts/ProductsContext'
+import { useContext } from 'react'
 
 const newProductFormValidationSchema = zod.object({
   nomeProduto: zod.string().min(1, 'Informe o nome do produto'),
@@ -17,6 +19,7 @@ const newProductFormValidationSchema = zod.object({
 type NewProductFormData = zod.infer<typeof newProductFormValidationSchema>
 
 export function CreateNewProduct() {
+  const { createANewProduct } = useContext(ProductsContext)
   const newProductForm = useForm<NewProductFormData>({
     resolver: zodResolver(newProductFormValidationSchema),
     defaultValues: {
@@ -32,7 +35,7 @@ export function CreateNewProduct() {
   const { handleSubmit, reset } = newProductForm
 
   function handleCreateNewProduct(data: NewProductFormData) {
-    console.log(data)
+    createANewProduct(data)
     reset()
   }
   return (

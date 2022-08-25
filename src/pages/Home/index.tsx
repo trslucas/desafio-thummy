@@ -14,8 +14,7 @@ export function Home() {
           <NavLink to="/cadastrarProduto">Cadastrar Produto</NavLink>
         </nav>
       </CriarProdutoButton>
-      {products ? <RegistredProducts /> : <NoRegistredProducts />}
-      {/* <RegistredProducts /> */}
+      {products.length > 0 ? <RegistredProducts /> : <NoRegistredProducts />}
     </HomeContainer>
   )
 }

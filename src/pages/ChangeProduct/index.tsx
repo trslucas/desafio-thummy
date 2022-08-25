@@ -1,9 +1,9 @@
-import { ChangeProductForm } from './components/ProdutoAlteradoForm'
 import { ChangeProductButton, ChangeProductContainer } from './styles'
 
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import { ChangeProductForm } from './components/ChangeProductForm'
 
 const changeProductFormValidationSchema = zod.object({
   nomeProduto: zod.string().min(1, 'Informe o nome do produto'),

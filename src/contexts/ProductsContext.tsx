@@ -14,7 +14,7 @@ interface CreateProductsData {
 
 interface ProductsContextData {
   products: Product[]
-  createNewProduct: (data: CreateProductsData) => void
+  createANewProduct: (data: CreateProductsData) => void
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)
@@ -30,7 +30,7 @@ export function ProductsContextProvider({
     products: [],
   })
   const { products } = productsState
-  function createNewProduct(data: CreateProductsData) {
+  function createANewProduct(data: CreateProductsData) {
     const id = crypto.randomUUID()
     const newProduct: Product = {
       id,
@@ -45,7 +45,7 @@ export function ProductsContextProvider({
   }
 
   return (
-    <ProductsContext.Provider value={{ products, createNewProduct }}>
+    <ProductsContext.Provider value={{ products, createANewProduct }}>
       {children}
     </ProductsContext.Provider>
   )

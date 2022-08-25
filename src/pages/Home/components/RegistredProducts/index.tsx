@@ -29,27 +29,7 @@ export function RegistredProducts() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Álcool</td>
-              <td>125</td>
-              <td>Higienizador</td>
-              <td>50</td>
-              <td>R$ 8,00</td>
-              <td>5</td>
-              <td>
-                <ChangeProductButton>
-                  <nav>
-                    <NavLink to="/alterarProduto">
-                      <Pencil size={16} />
-                    </NavLink>
-                  </nav>
-                </ChangeProductButton>
-                <DeleteProductButton>
-                  <Trash size={16} />
-                </DeleteProductButton>
-              </td>
-            </tr>
-            {/* {products.map((product) => {
+            {products.map((product) => {
               return (
                 <tr key={product.id}>
                   <td>{product.nomeProduto}</td>
@@ -72,7 +52,7 @@ export function RegistredProducts() {
                   </td>
                 </tr>
               )
-            })} */}
+            })}
           </tbody>
         </table>
       </RegistredProductsTable>
