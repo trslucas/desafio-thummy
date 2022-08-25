@@ -62,5 +62,5 @@ Realizado até agora:
 ### Layout 
 
 <div align="center">
-<img align="center" alt="To-Do" src="https://i.imgur.com/ll2Hc39.png">
+<img align="center" alt="To-Do" src="https://i.imgur.com/ll2Hc39.png](https://i.imgur.com/tpbTjeu.png">
 </div>
