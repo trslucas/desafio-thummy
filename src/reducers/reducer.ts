@@ -11,7 +11,7 @@ export interface Product {
   preco: number
 }
 
-interface ProductsState {
+export interface ProductsState {
   products: Product[]
 }
 

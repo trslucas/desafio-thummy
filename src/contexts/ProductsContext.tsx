@@ -26,10 +26,27 @@ interface ProductsContextProvidersProps {
 export function ProductsContextProvider({
   children,
 }: ProductsContextProvidersProps) {
-  const [productsState, dispatch] = useReducer(productsReducer, {
-    products: [],
-  })
+  const [productsState, dispatch] = useReducer(
+    productsReducer,
+    {
+      products: [],
+    },
+    () => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@thummi-crud:products-state-1.0.0',
+      )
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+    },
+  )
   const { products } = productsState
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(productsState)
+
+    localStorage.setItem('@thummi-crud:products-state-1.0.0', stateJSON)
+  }, [productsState])
 
   function createANewProduct(data: CreateProductsData) {
     const id = crypto.randomUUID()
