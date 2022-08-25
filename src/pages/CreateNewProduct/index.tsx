@@ -5,7 +5,8 @@ import * as zod from 'zod'
 import { CreateProductsContainer, NewProductButton } from './styles'
 import { NewProductForm } from './components/NewProductForm'
 import { ProductsContext } from '../../contexts/ProductsContext'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const newProductFormValidationSchema = zod.object({
   nomeProduto: zod.string().min(1, 'Informe o nome do produto'),
@@ -34,9 +35,11 @@ export function CreateNewProduct() {
 
   const { handleSubmit, reset } = newProductForm
 
+  const navigate = useNavigate()
   function handleCreateNewProduct(data: NewProductFormData) {
     createANewProduct(data)
     reset()
+    navigate('/')
   }
   return (
     <CreateProductsContainer>

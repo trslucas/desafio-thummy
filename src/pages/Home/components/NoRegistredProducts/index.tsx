@@ -8,8 +8,10 @@ export function NoRegistredProducts() {
     <NoRegistredProductsContainer>
       <h1>
         Você ainda não tem nenhum produto cadastrado <SmileySad size={60} />{' '}
+        <div>
+          <img src={semProdutosImage} alt="" />
+        </div>
       </h1>
-      <img src={semProdutosImage} alt="" />
     </NoRegistredProductsContainer>
   )
 }
