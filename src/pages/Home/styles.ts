@@ -20,10 +20,10 @@ export const CriarProdutoButton = styled.button`
   background-color: ${(props) => props.theme['dark-blue']};
   cursor: pointer;
   transition: 0.4s;
+  color: ${(props) => props.theme.white};
 
   nav {
     a {
-      color: ${(props) => props.theme.white};
       text-decoration: none;
     }
   }
