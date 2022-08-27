@@ -39,7 +39,10 @@ export function CreateNewProduct() {
   function handleCreateNewProduct(data: NewProductFormData) {
     createANewProduct(data)
     reset()
-    navigate('/')
+
+    setTimeout(() => {
+      navigate('/')
+    }, 500)
   }
   return (
     <CreateProductsContainer>
