@@ -48,7 +48,7 @@ export function RegistredProducts() {
                     </ChangeProductButton>
                     <DeleteProductButton
                       onClick={() => {
-                        deleteAProduct()
+                        deleteAProduct(product.codigoProduto)
                       }}
                     >
                       <Trash size={16} />
