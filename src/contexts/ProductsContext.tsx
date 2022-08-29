@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react'
-import { addNewProductAction } from '../reducers/actions'
+import { addNewProductAction, changeProductAction } from '../reducers/actions'
 
 import { Product, productsReducer } from '../reducers/reducer'
 
@@ -12,9 +12,18 @@ interface CreateProductsData {
   preco: number
 }
 
+export interface ChangeProductsData {
+  id?: string
+  nomeProduto: string
+  codigoProduto: number
+  descricaoProduto: string
+}
+
 interface ProductsContextData {
   products: Product[]
   createANewProduct: (data: CreateProductsData) => void
+  changeAProductInfo: (data: ChangeProductsData) => void
+  deleteAProduct: (codigoProduto: string) => void
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)
@@ -28,6 +37,12 @@ export function ProductsContextProvider({
 }: ProductsContextProvidersProps) {
   const [productsState, dispatch] = useReducer(productsReducer, {
     products: [],
+    codigoProduto: 0,
+    nomeProduto: '',
+    descricaoProduto: '',
+    quantidadeVendida: 0,
+    quantidadeProduto: 0,
+    preco: 0,
   })
   const { products } = productsState
 
@@ -44,9 +59,47 @@ export function ProductsContextProvider({
     }
     dispatch(addNewProductAction(newProduct))
   }
+  // função de alterar produto
 
+  function changeAProductInfo(data: ChangeProductsData) {
+    const id = crypto.randomUUID()
+
+    const changedProductNewInfos: ChangeProductsData = {
+      id,
+      codigoProduto: data.codigoProduto,
+      descricaoProduto: data.descricaoProduto,
+      nomeProduto: data.descricaoProduto,
+    }
+
+    const changedProduct: any = products.filter((product) => {
+      if (changedProductNewInfos.codigoProduto === product.codigoProduto) {
+        changedProductNewInfos.id = product.id
+        changedProductNewInfos.nomeProduto = product.nomeProduto
+        changedProductNewInfos.descricaoProduto = product.descricaoProduto
+        changedProductNewInfos.codigoProduto = product.codigoProduto
+      }
+
+      dispatch(changeProductAction(changedProduct))
+      return changedProduct
+    })
+  }
+
+  // função de deletar produto
+  function deleteAProduct(codigoProduto: string) {
+    const productsWithoutDeletedProduct: Product = products.filter(
+      (product) => product.id !== codigoProduto,
+      dispatch(deleteProductAction(productsWithoutDeletedProduct)),
+    )
+  }
   return (
-    <ProductsContext.Provider value={{ products, createANewProduct }}>
+    <ProductsContext.Provider
+      value={{
+        products,
+        createANewProduct,
+        changeAProductInfo,
+        deleteAProduct,
+      }}
+    >
       {children}
     </ProductsContext.Provider>
   )

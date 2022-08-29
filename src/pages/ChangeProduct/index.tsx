@@ -4,6 +4,11 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { ChangeProductForm } from './components/ChangeProductForm'
+import {
+  ChangeProductsData,
+  ProductsContext,
+} from '../../contexts/ProductsContext'
+import { useContext } from 'react'
 
 const changeProductFormValidationSchema = zod.object({
   nomeProduto: zod.string().min(1, 'Informe o nome do produto'),
@@ -14,6 +19,8 @@ const changeProductFormValidationSchema = zod.object({
 type ChangeProductFormData = zod.infer<typeof changeProductFormValidationSchema>
 
 export function ChangeProduct() {
+  const { changeAProductInfo } = useContext(ProductsContext)
+
   const changeProductForm = useForm<ChangeProductFormData>({
     resolver: zodResolver(changeProductFormValidationSchema),
     defaultValues: {
@@ -25,8 +32,8 @@ export function ChangeProduct() {
 
   const { handleSubmit, reset } = changeProductForm
 
-  function handleUpdateProduct(data: ChangeProductFormData) {
-    console.log(data)
+  function handleUpdateProduct(data: ChangeProductsData) {
+    changeAProductInfo(data)
     reset()
   }
 

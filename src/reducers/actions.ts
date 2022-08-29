@@ -1,4 +1,4 @@
-import { Product } from './reducer'
+import { ChangedProduct, Product } from './reducer'
 
 export enum ActionTypes {
   ADD_NEW_PRODUCT = 'ADD_NEW_PRODUCT',
@@ -15,14 +15,20 @@ export function addNewProductAction(newProduct: Product) {
   }
 }
 
-// export function changeProductAction() {
-//   return {
-//     type: ActionTypes.CHANGE_CURRENT_PRODUCT,
-//   }
-// }
+export function changeProductAction(changedProductNewInfos: ChangedProduct) {
+  return {
+    type: ActionTypes.CHANGE_CURRENT_PRODUCT,
+    payload: {
+      changedProductNewInfos,
+    },
+  }
+}
 
-// export function deleteProductAction() {
-//   return {
-//     type: ActionTypes.DELETE_PRODUCT,
-//   }
-// }
+export function deleteProductAction(productsWithoutDeletedProduct: string) {
+  return {
+    type: ActionTypes.DELETE_PRODUCT,
+    payload: {
+      productsWithoutDeletedProduct,
+    },
+  }
+}
