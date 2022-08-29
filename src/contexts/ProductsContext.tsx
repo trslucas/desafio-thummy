@@ -1,5 +1,9 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react'
-import { addNewProductAction, changeProductAction } from '../reducers/actions'
+import {
+  addNewProductAction,
+  changeProductAction,
+  deleteProductAction,
+} from '../reducers/actions'
 
 import { Product, productsReducer } from '../reducers/reducer'
 
@@ -23,7 +27,7 @@ interface ProductsContextData {
   products: Product[]
   createANewProduct: (data: CreateProductsData) => void
   changeAProductInfo: (data: ChangeProductsData) => void
-  deleteAProduct: (codigoProduto: string) => void
+  deleteAProduct: (productCode: number) => void
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)
@@ -85,11 +89,11 @@ export function ProductsContextProvider({
   }
 
   // função de deletar produto
-  function deleteAProduct(codigoProduto: string) {
-    const productsWithoutDeletedProduct: Product = products.filter(
-      (product) => product.id !== codigoProduto,
-      dispatch(deleteProductAction(productsWithoutDeletedProduct)),
+  function deleteAProduct(productCode: number) {
+    const productsWithoutDeletedProduct = products.filter(
+      (product) => product.codigoProduto !== productCode,
     )
+    dispatch(deleteProductAction(productsWithoutDeletedProduct))
   }
   return (
     <ProductsContext.Provider

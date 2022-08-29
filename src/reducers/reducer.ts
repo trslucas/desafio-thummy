@@ -46,15 +46,13 @@ export function productsReducer(state: ProductsState, action: any) {
 
   if (ActionTypes.DELETE_PRODUCT) {
     const deletedProducts = state.products.filter((product) => {
-      return product.codigoProduto !== state.codigoProduto
+      if (product.codigoProduto !== state.codigoProduto) {
+        return produce(state, (draft) => {
+          draft.products.push(action.payload.deletedProducts)
+        })
+      }
+      return state
     })
-
-    if (deletedProducts) {
-      return produce(state, (draft) => {
-        draft.products.pop()
-      })
-    }
-    return state
   }
   return state
 }
