@@ -24,11 +24,11 @@ export function changeProductAction(changedProductNewInfos: ChangedProduct) {
   }
 }
 
-export function deleteProductAction(productCode: number) {
+export function deleteProductAction(deletedProduct: Product) {
   return {
     type: ActionTypes.DELETE_PRODUCT,
     payload: {
-      productCode,
+      deletedProduct,
     },
   }
 }

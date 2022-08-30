@@ -90,10 +90,10 @@ export function ProductsContextProvider({
 
   // função de deletar produto
   function deleteAProduct(productCode: number) {
-    const productsWithoutDeletedProduct: any = products.filter(
+    const productsListWithoutDeletedProduct: any = products.filter(
       (product) => product.codigoProduto !== productCode,
     )
-    dispatch(deleteProductAction(productsWithoutDeletedProduct))
+    dispatch(deleteProductAction(productsListWithoutDeletedProduct))
   }
   return (
     <ProductsContext.Provider
