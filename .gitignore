@@ -7,6 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+**/node_modules
+
+
 node_modules
 dist
 dist-ssr
@@ -25,4 +28,8 @@ dist-ssr
 Footer
 © 2022 GitHub, Inc.
 Footer navigation
+<<<<<<< HEAD
 Terms
+=======
+Terms
+>>>>>>> refs/remotes/origin/main
