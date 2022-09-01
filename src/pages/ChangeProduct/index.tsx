@@ -4,11 +4,9 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { ChangeProductForm } from './components/ChangeProductForm'
-import {
-  ChangeProductsData,
-  ProductsContext,
-} from '../../contexts/ProductsContext'
+import { ProductsContext } from '../../contexts/ProductsContext'
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const changeProductFormValidationSchema = zod.object({
   nomeProduto: zod.string().min(1, 'Informe o nome do produto'),
@@ -31,10 +29,15 @@ export function ChangeProduct() {
   })
 
   const { handleSubmit, reset } = changeProductForm
+  const navigate = useNavigate()
 
-  function handleUpdateProduct(data: ChangeProductsData) {
+  function handleUpdateProduct(data: ChangeProductFormData) {
     changeAProductInfo(data)
     reset()
+
+    setTimeout(() => {
+      navigate('/')
+    }, 500)
   }
 
   return (

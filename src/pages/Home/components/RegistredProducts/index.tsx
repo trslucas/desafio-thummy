@@ -12,6 +12,9 @@ import { ProductsContext } from '../../../../contexts/ProductsContext'
 
 export function RegistredProducts() {
   const { products, deleteAProduct } = useContext(ProductsContext)
+  function handleDeleteAProduct(codigoProduto: number) {
+    deleteAProduct(codigoProduto)
+  }
   return (
     <RegistredProductsContainer>
       <h1>Produtos Cadastrados</h1>
@@ -47,9 +50,9 @@ export function RegistredProducts() {
                       </nav>
                     </ChangeProductButton>
                     <DeleteProductButton
-                      onClick={() => {
-                        deleteAProduct(product.codigoProduto)
-                      }}
+                      onClick={() =>
+                        handleDeleteAProduct(product.codigoProduto)
+                      }
                     >
                       <Trash size={16} />
                     </DeleteProductButton>

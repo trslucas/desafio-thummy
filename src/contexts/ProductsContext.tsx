@@ -1,11 +1,21 @@
-import { createContext, ReactNode, useEffect, useReducer } from 'react'
-import {
-  addNewProductAction,
-  changeProductAction,
-  deleteProductAction,
-} from '../reducers/actions'
+import { createContext, ReactNode, useReducer } from 'react'
 
-import { Product, productsReducer } from '../reducers/reducer'
+export interface Product {
+  id?: string
+  nomeProduto: string
+  codigoProduto: number
+  descricaoProduto: string | null
+  quantidadeProduto?: number
+  quantidadeVendida?: number
+  preco?: number
+}
+
+export interface ChangeProduct {
+  id?: string
+  nomeProduto: string
+  codigoProduto: number
+  descricaoProduto: string
+}
 
 interface CreateProductsData {
   nomeProduto: string
@@ -16,7 +26,7 @@ interface CreateProductsData {
   preco: number
 }
 
-export interface ChangeProductsData {
+interface ChangeProductsData {
   id?: string
   nomeProduto: string
   codigoProduto: number
@@ -27,7 +37,7 @@ interface ProductsContextData {
   products: Product[]
   createANewProduct: (data: CreateProductsData) => void
   changeAProductInfo: (data: ChangeProductsData) => void
-  deleteAProduct: (productCode: number) => void
+  deleteAProduct: (codigoProduto: number) => void
 }
 
 export const ProductsContext = createContext({} as ProductsContextData)
@@ -36,18 +46,59 @@ interface ProductsContextProvidersProps {
   children: ReactNode
 }
 
+export interface ProductsState {
+  products: Product[]
+  codigoProduto: number
+  descricaoProduto: string
+  nomeProduto: string
+}
+
 export function ProductsContextProvider({
   children,
 }: ProductsContextProvidersProps) {
-  const [productsState, dispatch] = useReducer(productsReducer, {
-    products: [],
-    codigoProduto: 0,
-    nomeProduto: '',
-    descricaoProduto: '',
-    quantidadeVendida: 0,
-    quantidadeProduto: 0,
-    preco: 0,
-  })
+  const [productsState, dispatch] = useReducer(
+    (state: ProductsState, action: any) => {
+      if (action.type === 'ADD_NEW_PRODUCT') {
+        return {
+          ...state,
+          products: [...state.products, action.payload.newProduct],
+        }
+      }
+      if (action.type === 'CHANGE_CURRENT_PRODUCT') {
+        return {
+          ...state,
+          products: state.products.map((product) => {
+            if (product.codigoProduto === state.codigoProduto) {
+              return {
+                ...product,
+                descricaoProduto:
+                  action.payload.updatedProduct.descricaoProduto,
+                nomeProduto: action.payload.updatedProduct.nomeProduto,
+              }
+            }
+            return product
+          }),
+        }
+      }
+
+      if (action.type === 'DELETE_PRODUCT') {
+        return {
+          ...state,
+          products: state.products.filter(
+            (product) => product.codigoProduto !== action.payload.codigoProduto,
+          ),
+        }
+      }
+      return state
+    },
+    {
+      products: [],
+      codigoProduto: 0,
+      descricaoProduto: '',
+      nomeProduto: '',
+    },
+  )
+
   const { products } = productsState
 
   function createANewProduct(data: CreateProductsData) {
@@ -61,39 +112,35 @@ export function ProductsContextProvider({
       quantidadeProduto: data.quantidadeProduto,
       quantidadeVendida: data.quantidadeVendida,
     }
-    dispatch(addNewProductAction(newProduct))
-  }
-  // função de alterar produto
-
-  function changeAProductInfo(data: ChangeProductsData) {
-    const id = crypto.randomUUID()
-
-    const changedProductNewInfos: ChangeProductsData = {
-      id,
-      codigoProduto: data.codigoProduto,
-      descricaoProduto: data.descricaoProduto,
-      nomeProduto: data.descricaoProduto,
-    }
-
-    const changedProduct: any = products.filter((product) => {
-      if (changedProductNewInfos.codigoProduto === product.codigoProduto) {
-        changedProductNewInfos.id = product.id
-        changedProductNewInfos.nomeProduto = product.nomeProduto
-        changedProductNewInfos.descricaoProduto = product.descricaoProduto
-        changedProductNewInfos.codigoProduto = product.codigoProduto
-      }
-
-      dispatch(changeProductAction(changedProduct))
-      return changedProduct
+    dispatch({
+      type: 'ADD_NEW_PRODUCT',
+      payload: {
+        newProduct,
+      },
     })
   }
 
-  // função de deletar produto
-  function deleteAProduct(productCode: number) {
-    const productsListWithoutDeletedProduct: any = products.filter(
-      (product) => product.codigoProduto !== productCode,
-    )
-    dispatch(deleteProductAction(productsListWithoutDeletedProduct))
+  function changeAProductInfo(data: ChangeProductsData) {
+    const updatedProduct: Product = {
+      codigoProduto: data.codigoProduto,
+      descricaoProduto: data.descricaoProduto,
+      nomeProduto: data.nomeProduto,
+    }
+    dispatch({
+      type: 'CHANGE_CURRENT_PRODUCT',
+      payload: {
+        updatedProduct,
+      },
+    })
+  }
+
+  function deleteAProduct(codigoProduto: number) {
+    dispatch({
+      type: 'DELETED_PRODUCT',
+      payload: {
+        codigoProduto,
+      },
+    })
   }
   return (
     <ProductsContext.Provider
