@@ -64,11 +64,30 @@ export function ProductsContextProvider({
           products: [...state.products, action.payload.newProduct],
         }
       }
+
+      // const sameProduct: Product = action.payload.newProduct
+      // if (sameProduct) {
+      //   return {
+      //     ...state,
+      //     products: state.products.map((product) => {
+      //       if (product.codigoProduto === state.codigoProduto) {
+      //         return {
+      //           ...product,
+      //           quantidadeVendida: +1,
+      //         }
+      //       }
+      //       return product
+      //     }),
+      //   }
+      // }
       if (action.type === 'CHANGE_CURRENT_PRODUCT') {
         return {
           ...state,
           products: state.products.map((product) => {
-            if (product.codigoProduto === state.codigoProduto) {
+            if (
+              product.codigoProduto ===
+              action.payload.updatedProduct.codigoProduto
+            ) {
               return {
                 ...product,
                 descricaoProduto:
