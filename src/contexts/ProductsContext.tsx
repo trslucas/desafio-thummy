@@ -155,7 +155,7 @@ export function ProductsContextProvider({
 
   function deleteAProduct(codigoProduto: number) {
     dispatch({
-      type: 'DELETED_PRODUCT',
+      type: 'DELETE_PRODUCT',
       payload: {
         codigoProduto,
       },
