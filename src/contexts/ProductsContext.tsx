@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useReducer } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 
 export interface Product {
   id?: string
@@ -64,22 +70,6 @@ export function ProductsContextProvider({
           products: [...state.products, action.payload.newProduct],
         }
       }
-
-      // const sameProduct: Product = action.payload.newProduct
-      // if (sameProduct) {
-      //   return {
-      //     ...state,
-      //     products: state.products.map((product) => {
-      //       if (product.codigoProduto === state.codigoProduto) {
-      //         return {
-      //           ...product,
-      //           quantidadeVendida: +1,
-      //         }
-      //       }
-      //       return product
-      //     }),
-      //   }
-      // }
       if (action.type === 'CHANGE_CURRENT_PRODUCT') {
         return {
           ...state,
@@ -116,8 +106,25 @@ export function ProductsContextProvider({
       descricaoProduto: '',
       nomeProduto: '',
     },
+    () => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@thummi-crud:products-state-1.0.0',
+      )
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+
+      return {
+        products: [],
+      }
+    },
   )
 
+  useEffect(() => {
+    const stateJSON = JSON.stringify(productsState)
+
+    localStorage.setItem('@thummi-crud:products-state-1.0.0', stateJSON)
+  }, [productsState])
   const { products } = productsState
 
   function createANewProduct(data: CreateProductsData) {
@@ -131,6 +138,7 @@ export function ProductsContextProvider({
       quantidadeProduto: data.quantidadeProduto,
       quantidadeVendida: data.quantidadeVendida,
     }
+
     dispatch({
       type: 'ADD_NEW_PRODUCT',
       payload: {
