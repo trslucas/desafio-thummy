@@ -65,6 +65,23 @@ export function ProductsContextProvider({
   const [productsState, dispatch] = useReducer(
     (state: ProductsState, action: any) => {
       if (action.type === 'ADD_NEW_PRODUCT') {
+        const productAlreadyExists = state.products.findIndex(
+          (product) =>
+            product.codigoProduto === action.payload.newProduct.codigoProduto,
+        )
+
+        console.log(productAlreadyExists)
+
+        if (productAlreadyExists !== -1) {
+          const updatedProduct = [...state.products]
+          updatedProduct[productAlreadyExists].quantidadeProduto +=
+            action.payload.newProduct.codigoProduto
+
+          return {
+            ...state,
+            products: updatedProduct,
+          }
+        }
         return {
           ...state,
           products: [...state.products, action.payload.newProduct],
