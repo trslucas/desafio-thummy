@@ -75,7 +75,7 @@ export function ProductsContextProvider({
         if (productAlreadyExists !== -1) {
           const updatedProduct = [...state.products]
           updatedProduct[productAlreadyExists].quantidadeProduto +=
-            action.payload.newProduct.codigoProduto
+            action.payload.newProduct.quantidadeProduto
 
           return {
             ...state,
